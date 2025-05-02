@@ -8,7 +8,7 @@ const RootLayout = () => {
     <div>
       <Navbar />
 
-      <main>
+      <main className="mt-5 bg-blue-50">
         <Outlet />
       </main>
 

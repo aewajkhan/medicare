@@ -6,13 +6,15 @@ import Doctors from "./pages/Doctors";
 import Contact from "./pages/Contact";
 import Services from "./pages/services/Services";
 import AboutUs from "./pages/AboutUs";
-import BookAppointment from "./pages/BookAppointment";
+import BookAppointment from "./pages/appointment/BookAppointment";
 import Cardiology from "./pages/services/Cardiology";
 import Neurology from "./pages/services/Neurology";
 import Pediatrics from "./pages/services/Pediatrics";
 import Orthopedics from "./pages/services/Orthopedics";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
+import AppointmentDetails from "./pages/appointment/AppointmentDatails";
+import EditAppointment from "./pages/appointment/EditAppointment";
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
         <Route path="/services/orthopedics" element={<Orthopedics />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/appointment-details" element={<AppointmentDetails />} />
+        <Route path="/edit-appointment/:id" element={<EditAppointment/>}/>
       </Route>
     </Routes>
   );
