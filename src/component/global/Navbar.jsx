@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/authSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate=useNavigate()
 
   const links = [
     { name: "Home", path: "/" },
@@ -43,10 +44,15 @@ const Navbar = () => {
           <div className="hidden md:flex gap-4 items-center">
             {isAuthenticated ? (
               <>
-                <span className="text-gray-700">Hello, {user.email}</span>
+                <span className="text-blue-600 font-bold">
+                  Hello, {user?.name}
+                </span>
                 <button
-                  onClick={() => dispatch(logout())}
-                  className="text-red-600 hover:text-red-800"
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate("/login");
+                  }}
+                  className="text-white hover:text-pink-200 bg-red-500 px-3 py-1 rounded-md"
                 >
                   Logout
                 </button>
@@ -58,7 +64,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                  className="bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700"
                 >
                   Sign Up
                 </Link>
@@ -120,7 +126,7 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          <li>
+          {/* <li>
             <Link
               to="/login"
               onClick={() => setMenuOpen(false)}
@@ -137,7 +143,40 @@ const Navbar = () => {
             >
               Sign Up
             </Link>
-          </li>
+          </li> */}
+          {isAuthenticated ? (
+            <>
+              <span className="text-blue-600 font-bold">
+                Hello, {user.name}{" "}
+              </span>
+              <button
+                onClick={() => {
+                  dispatch(logout());
+                  navigate("/login");
+                }}
+                className="text-white hover:text-pink-200 bg-red-500 px-3 py-1 rounded-md"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to="/login"
+                className="text-gray-700 hover:text-blue-600"
+              >
+                Login
+              </Link>
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to="/signup"
+                className="bg-blue-600 w-[70px]  text-white px-1 py-1 rounded-md hover:bg-blue-700"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </ul>
       )}
     </nav>

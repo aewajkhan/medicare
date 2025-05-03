@@ -48,7 +48,7 @@ const Home = () => {
                 <img
                   src={images.doctor_2}
                   alt="Doctor"
-                  className="w-24 h-24 mx-auto rounded-full mb-4"
+                  className="w-32 h-32 rounded-full mx-auto object-cover mb-4"
                 />
                 <h4 className="text-lg font-bold text-blue-700">Dr. John Doe</h4>
                 <p className="text-gray-500">Cardiologist</p>

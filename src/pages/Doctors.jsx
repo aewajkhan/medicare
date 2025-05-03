@@ -1,10 +1,12 @@
 import React from 'react';
+import { images } from '../utils/images';
+
 
 const doctors = [
-  { name: "Dr. Amanda Grey", specialization: "Cardiologist", img: "/assets/images/doctor_1.png" },
-  { name: "Dr. Rajiv Menon", specialization: "Neurologist", img: "/assets/images/doctor_2.png" },
-  { name: "Dr. Lisa Wong", specialization: "Pediatrician", img: "/assets/images/doctor_3.png" },
-  { name: "Dr. Ibrahim Khan", specialization: "Orthopedic Surgeon", img: "/assets/images/doctor_4.png" },
+  { name: "Dr. Amanda Grey", specialization: "Cardiologist", img: images.doctor_2},
+  { name: "Dr. Rajiv Menon", specialization: "Neurologist", img: images.doctor_2 },
+  { name: "Dr. Lisa Wong", specialization: "Pediatrician", img: images.doctor_2 },
+  { name: "Dr. Ibrahim Khan", specialization: "Orthopedic Surgeon", img: images.doctor_2 },
 ];
 
 const Doctors = () => {

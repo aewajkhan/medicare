@@ -62,14 +62,19 @@
 // };
 
 // export default Signup;
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signupSuccess } from '../../redux/slices/authSlice';
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    address: ''
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -80,7 +85,7 @@ const Signup = () => {
     e.preventDefault();
     console.log('Signing up with:', formData);
     dispatch(signupSuccess(formData));
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -90,6 +95,26 @@ const Signup = () => {
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-blue-700 text-center">Sign Up</h2>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+        />
+
+        <input
+          type="text"
+          name="address"
+          placeholder="Address"
+          value={formData.address}
+          onChange={handleChange}
+          required
+          className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+        />
 
         <input
           type="email"

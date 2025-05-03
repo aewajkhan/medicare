@@ -24,7 +24,6 @@ const AppointmentDetails = () => {
   }
 
   const handleDelete = (id) => {
-    // Simulate refund (mock Razorpay refund here)
     const refundSuccessful = true; // Replace with actual Razorpay refund logic
     dispatch(deleteAppointment(id));
 
