@@ -15,6 +15,7 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import AppointmentDetails from "./pages/appointment/AppointmentDatails";
 import EditAppointment from "./pages/appointment/EditAppointment";
+import AuthRoutes from "./protected/AuthRoutes";
 
 const App = () => {
   return (
@@ -25,15 +26,17 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/book-appointment" element={<BookAppointment />} />
         <Route path="/services/cardiology" element={<Cardiology />} />
         <Route path="/services/neurology" element={<Neurology />} />
         <Route path="/services/pediatrics" element={<Pediatrics />} />
         <Route path="/services/orthopedics" element={<Orthopedics />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/appointment-details" element={<AppointmentDetails />} />
-        <Route path="/edit-appointment/:id" element={<EditAppointment/>}/>
+        <Route element={<AuthRoutes />}>
+          <Route path="/book-appointment" element={<BookAppointment />} />
+          <Route path="/appointment-details" element={<AppointmentDetails />} />
+          <Route path="/edit-appointment/:id" element={<EditAppointment />} />
+        </Route>
       </Route>
     </Routes>
   );

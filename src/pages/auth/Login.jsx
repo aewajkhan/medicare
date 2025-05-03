@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../../redux/slices/authSlice';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginSuccess } from "../../redux/slices/authSlice";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,17 +15,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem('userData'));
+    const storedUser = JSON.parse(localStorage.getItem("userData"));
 
+    if (!storedUser) {
+      navigate("/signup");
+    }
     if (
       storedUser &&
       formData.email === storedUser.email &&
       formData.password === storedUser.password
     ) {
       dispatch(loginSuccess(storedUser));
-      navigate('/');
+      navigate("/");
     } else {
-      setError('Invalid email or password');
+      setError("Invalid email or password");
     }
   };
 
@@ -35,7 +38,9 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-blue-700 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-blue-700 text-center">
+          Login
+        </h2>
 
         {error && (
           <p className="text-red-500 text-sm mb-4 text-center">{error}</p>

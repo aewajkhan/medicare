@@ -25,7 +25,7 @@ const authSlice = createSlice({
     },
     signupSuccess: (state, action) => {
       state.user = action.payload;
-      state.isAuthenticated = true; // <- was false
+      state.isAuthenticated = false; 
       localStorage.setItem("userData", JSON.stringify(state.user));
     }
     
