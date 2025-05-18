@@ -7,8 +7,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
+  console.log("=-=-=-", user?.user);
   const links = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -45,8 +46,13 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <span className="text-blue-600 font-bold">
-                  Hello, {user?.name}
+                  Hello, {user?.user?.firstName}
                 </span>
+                <img
+                  src={user?.user?.profileImage}
+                  alt="img"
+                  className="w-10 h-10 rounded-full"
+                />
                 <button
                   onClick={() => {
                     dispatch(logout());
@@ -126,29 +132,18 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          {/* <li>
-            <Link
-              to="/login"
-              onClick={() => setMenuOpen(false)}
-              className="block hover:text-blue-600 transition"
-            >
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/signup"
-              onClick={() => setMenuOpen(false)}
-              className="block hover:text-blue-600 transition"
-            >
-              Sign Up
-            </Link>
-          </li> */}
+
           {isAuthenticated ? (
             <>
               <span className="text-blue-600 font-bold">
-                Hello, {user.name}{" "}
+                Hello, {user?.user?.firstName}{" "}
               </span>
+              <img
+                src={user?.user?.profileImage}
+                alt="img"
+                className="w-10 h-10 rounded-full"
+              />
+
               <button
                 onClick={() => {
                   dispatch(logout());
